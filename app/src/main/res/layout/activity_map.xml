@@ -1,0 +1,168 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android" />
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/edtAddress"
+            tools:context="com.example.dohuuthien.mygooglemap.MapsActivity" />
+
+
+        <EditText
+            android:id="@+id/searchLocationA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8dp"
+            android:layout_marginRight="@dimen/_8dp"
+            android:layout_marginTop="@dimen/status_bar_height"
+            android:background="@drawable/rectangle"
+            android:elevation="@dimen/_4dp"
+            android:fontFamily="sans-serif-light"
+            android:hint="Nhập Địa Chỉ"
+            android:imeOptions="actionSearch"
+            android:inputType="textCapWords|textNoSuggestions"
+            android:paddingBottom="@dimen/_12dp"
+            android:paddingLeft="@dimen/_24dp"
+            android:paddingRight="@dimen/_8dp"
+            android:paddingTop="@dimen/_12dp"
+            android:singleLine="true"
+            android:textSize="@dimen/_20sp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/searchLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8dp"
+            android:layout_marginRight="@dimen/_8dp"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/rectangle"
+            android:elevation="@dimen/_4dp"
+            android:fontFamily="sans-serif-light"
+            android:hint="Nhập Điểm Đến"
+            android:imeOptions="actionSearch"
+            android:inputType="textCapWords|textNoSuggestions"
+            android:paddingBottom="@dimen/_12dp"
+            android:paddingLeft="@dimen/_24dp"
+            android:paddingRight="@dimen/_8dp"
+            android:paddingTop="@dimen/_12dp"
+            android:singleLine="true"
+            android:textSize="@dimen/_20sp" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:elevation="4dp"
+            android:visibility="gone"
+            android:layout_gravity="bottom">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="8dp"
+                    android:src="@drawable/iconcar" />
+
+                <TextView
+                    android:id="@+id/txtTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="8dp"
+                    android:text="6 Phút"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#0e2b8f"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtKhoangCach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Khoảng Cách: 5 km"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#343434"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/txtKhoangCach"
+                    android:layout_marginLeft="8dp"
+                    android:text="Tiền: 500VND"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#343434"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/fab_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="@dimen/_48dp"
+            android:layout_marginRight="@dimen/_16dp"
+            fab:fab_addButtonColorNormal="@color/yellow"
+            fab:fab_addButtonColorPressed="@color/yellow_300"
+            fab:fab_addButtonPlusIconColor="@color/white"
+            fab:fab_addButtonSize="normal"
+            fab:fab_labelStyle="@style/menu_labels_style"
+            fab:fab_labelsPosition="left">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="nearbyme"
+                fab:fab_addButtonSize="mini"
+                fab:fab_colorNormal="@color/yellow"
+                fab:fab_colorPressed="@color/yellow_300"
+                fab:fab_icon="@drawable/ic_filter_list"
+                fab:fab_title="@string/map_style" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="searchway"
+                fab:fab_addButtonSize="mini"
+                fab:fab_colorNormal="@color/yellow"
+                fab:fab_colorPressed="@color/yellow_300"
+                fab:fab_icon="@drawable/ic_mode_edit"
+                fab:fab_title="@string/location" />
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    </FrameLayout>
+
+
+</RelativeLayout>

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.dclover.gpsutilities.caidat.ActivityCaiDat;
 import com.dclover.gpsutilities.compass.ComPass;
 import com.dclover.gpsutilities.khoihanh.ActivityKhoiHanh;
+import com.dclover.gpsutilities.maps.MapActivity;
 import com.dclover.gpsutilities.maps.MapsActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         llbando.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
                 startActivity(intent);
             }
         });
