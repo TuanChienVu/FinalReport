@@ -33,7 +33,8 @@
             android:name=".compass.ComPass"
             android:theme="@style/AppThemeActionBar" />
         <activity android:name=".khoihanh.ActivityKhoiHanh" />
-        <activity android:name=".caidat.ActivityCaiDat"></activity>
+        <activity android:name=".caidat.ActivityCaiDat" />
+        <activity android:name=".maps.MapsActivity"></activity>
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.dclover.gpsutilities.caidat.ActivityCaiDat;
 import com.dclover.gpsutilities.compass.ComPass;
 import com.dclover.gpsutilities.khoihanh.ActivityKhoiHanh;
+import com.dclover.gpsutilities.maps.MapsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         llbando.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                customToast("Chức năng này đang phát triển");
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(intent);
             }
         });
         lltaxi.setOnClickListener(new View.OnClickListener() {
