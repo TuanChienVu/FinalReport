@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">GPS Utilities</string>
+    <string-array name="spinnerItems">
+        <item>Xe oto</item>
+        <item>Xe máy</item>
+        <item>Xe đạp</item>
+        <item>Đi bộ</item>
+    </string-array>
 </resources>
