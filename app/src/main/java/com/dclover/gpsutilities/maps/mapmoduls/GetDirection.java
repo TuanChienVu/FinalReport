@@ -1,8 +1,7 @@
-package com.dclover.gpsutilities.maps;
+package com.dclover.gpsutilities.maps.mapmoduls;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.dclover.gpsutilities.khoihanh.moduls.Route;
@@ -18,7 +17,7 @@ import java.util.List;
 public class GetDirection extends HttpHelperRequest {
 
 
-    OnCompleteGetDirection mOnCompleteGetDirection;
+    public OnCompleteGetDirection mOnCompleteGetDirection;
     String address1 = "";
     String address2 = "";
 
@@ -152,7 +151,7 @@ public class GetDirection extends HttpHelperRequest {
 
     }
 
-    interface OnCompleteGetDirection{
+    public interface OnCompleteGetDirection{
         void onCompleteGetDirection(boolean isOK, Route direction, String... msg);
     }
 }

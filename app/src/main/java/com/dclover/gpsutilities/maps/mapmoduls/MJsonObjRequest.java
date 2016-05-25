@@ -1,4 +1,4 @@
-package com.dclover.gpsutilities.maps;
+package com.dclover.gpsutilities.maps.mapmoduls;
 
 /**
  * Created by Do Huu Thien on 11/8/2015.

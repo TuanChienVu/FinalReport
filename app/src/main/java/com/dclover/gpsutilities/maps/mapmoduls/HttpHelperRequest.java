@@ -1,4 +1,4 @@
-package com.dclover.gpsutilities.maps;
+package com.dclover.gpsutilities.maps.mapmoduls;
 
 import android.content.Context;
 

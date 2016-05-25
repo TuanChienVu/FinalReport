@@ -25,6 +25,7 @@ import com.dclover.gpsutilities.R;
 import com.dclover.gpsutilities.khoihanh.moduls.DirectionFinder;
 import com.dclover.gpsutilities.khoihanh.moduls.DirectionFinderListener;
 import com.dclover.gpsutilities.khoihanh.moduls.Route;
+import com.dclover.gpsutilities.maps.mapmoduls.GetDirection;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
