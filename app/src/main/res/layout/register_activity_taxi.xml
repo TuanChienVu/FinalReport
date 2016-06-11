@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp">
+    <EditText
+        android:id="@+id/edtTaxiRegisterPassSdt"
+        style="@style/EditTextRoundBold"
+        android:drawableLeft="@drawable/phone_16"
+        android:hint="Nhập SDT"
+        android:inputType="number"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/edtTaxiLoginRegisterPass"
+        style="@style/EditTextRoundBold"
+        android:drawableLeft="@drawable/key16"
+        android:hint="Mật khẩu"
+        android:inputType="textPassword"
+        android:layout_marginTop="6dp" />
+    <EditText
+        android:id="@+id/edtTaxiRegisterPassAgain"
+        style="@style/EditTextRoundBold"
+        android:drawableLeft="@drawable/key16"
+        android:hint="Nhập lại mật khẩu"
+        android:inputType="textPassword"
+        android:layout_marginTop="6dp" />
+
+    <Button
+        android:id="@+id/btnTaxiRegisterLogin"
+        style="@style/ButtonRadiusMaterialGreen"
+        android:text="Đăng Ký"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginTop="16dp"
+        android:layout_height="54dp"
+        android:textSize="20sp" />
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:progressDrawable="@drawable/circular_progress_bar"
+        android:indeterminate="false"
+        android:visibility="gone"
+        android:layout_gravity="center" />
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/imv_driver_car"
+        android:layout_height="40dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="40dp" />
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+
+            android:id="@+id/tv_driver_name"
+            android:layout_height="20dp"
+            android:layout_width="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_driver_phone"
+            android:layout_height="20dp"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+
+    <ImageView
+        android:background="@drawable/shape_green_circle"
+        android:id="@+id/imv_phone"
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:scaleType="center"
+        android:src="@drawable/phone_16_white" />
+</LinearLayout>

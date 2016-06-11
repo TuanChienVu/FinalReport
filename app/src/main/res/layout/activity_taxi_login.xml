@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp">
+
+    <EditText
+        android:id="@+id/edtTaxiRegisterPassSdt"
+        style="@style/EditTextRoundBold"
+        android:drawableLeft="@drawable/phone_16"
+        android:hint="Nhập SDT"
+        android:inputType="number"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/edtTaxiLoginPass"
+        style="@style/EditTextRoundBold"
+        android:drawableLeft="@drawable/key16"
+        android:hint="Mật Khẩu"
+        android:inputType="textPassword"
+        android:layout_marginTop="6dp" />
+
+    <Button
+        android:id="@+id/btnTaxiLoginLogin"
+        style="@style/ButtonRadiusMaterialGreen"
+        android:text="Đăng Nhập"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginTop="16dp"
+        android:layout_height="54dp"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <Button
+            style="@style/ButtonFlatTransparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnTaxiLoginForgetPass"
+            android:text="Quên mật khẩu?"
+            android:textSize="13sp"
+            android:layout_gravity="right" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+       >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Bạn không có tài khoản?"
+            android:textColor="@color/black"
+            android:layout_above="@+id/btnTaxiRegister"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            style="@style/ButtonRadiusMaterialDarkGray"
+            android:id="@+id/btnTaxiRegister"
+            android:text="Đăng ký"
+            android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="false"
+            android:layout_margin="16dp"
+            android:layout_height="52dp"
+            android:textSize="20sp"
+            android:elevation="0dp" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:indeterminate="false"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

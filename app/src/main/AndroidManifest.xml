@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dclover.gpsutilities">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
@@ -21,7 +22,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDkrWIUtkYb2CkDPGrGhfHrEf3HuTI3R6Q" />
+            android:value="AIzaSyDOQG3w1nQ6us2yjR9CSazx7IWDgOB1TZk" />
         <!-- Goolge Maps API Key -->
         <!--
             <meta-data
@@ -40,9 +41,21 @@
             android:theme="@style/AppThemeActionBar" />
         <activity android:name=".khoihanh.ActivityKhoiHanh" />
         <activity android:name=".caidat.ActivityCaiDat" />
-        <activity android:name=".maps.MapsActivity" />
         <activity android:name=".maps.MapActivity" />
-        <activity android:name=".maps.NearbyMeActivity"></activity>
+        <activity android:name=".maps.NearbyMeActivity" />
+        <activity
+            android:name=".taxi.Activity.LoginActivity"
+            android:theme="@style/AppThemeActionBar"
+            android:label="Tìm Taxi"/>
+        <activity
+            android:name=".taxi.Activity.MainActivityTaxi"
+            android:theme="@style/AppThemeActionBar"
+            android:label="Tìm Taxi"/>
+        <activity
+            android:name=".taxi.Activity.ResetPassActivityTaxi"
+            android:theme="@style/AppThemeActionBar" />
+        <activity android:name=".taxi.Activity.RegisterActivityTaxi"
+            android:theme="@style/AppThemeActionBar"></activity>
     </application>
 
 </manifest>

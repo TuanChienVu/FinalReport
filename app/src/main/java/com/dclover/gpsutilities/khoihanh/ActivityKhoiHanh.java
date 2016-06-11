@@ -14,6 +14,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -82,6 +83,7 @@ public class ActivityKhoiHanh extends AppCompatActivity implements OnMapReadyCal
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d("dd",myLocation.getLongitude()+"");
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("long", "" + myLocation.getLongitude());
         editor.putString("lati", "" + myLocation.getLatitude());
@@ -247,8 +249,8 @@ public class ActivityKhoiHanh extends AppCompatActivity implements OnMapReadyCal
         // TODO Auto-generated method stub
         if(location != null)
         {
-            CLocation myLocation = new CLocation(location, this.useMetricUnits());
-            this.updateSpeed(myLocation);
+            CLocation myLocation1 = new CLocation(location, this.useMetricUnits());
+            this.updateSpeed(myLocation1);
         }
     }
     @Override
@@ -351,7 +353,7 @@ public class ActivityKhoiHanh extends AppCompatActivity implements OnMapReadyCal
             googleMap.animateCamera(zoom);
         }
         //  googleMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(preferences.getLong("lati",0),preferences.getLong("long",0)) , 14) );
-        googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+          googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
 
