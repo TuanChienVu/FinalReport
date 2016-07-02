@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.dclover.gpsutilities.MainActivity;
 import com.dclover.gpsutilities.R;
 import com.dclover.gpsutilities.taxi.Utils.Constants;
+import com.dclover.gpsutilities.taxi.Utils.Env;
+import com.dclover.gpsutilities.taxi.model.User;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -38,7 +40,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        SharedPreferences sharedPref = getSharedPreferences(Constants.MY_APP, MODE_PRIVATE);
+        final SharedPreferences sharedPref = getSharedPreferences(Constants.MY_APP, MODE_PRIVATE);
+        final SharedPreferences.Editor edit=sharedPref.edit();
         String login=sharedPref.getString("login.email","");
         if(login.equals("")) {
             String linkBD = getBaseContext().getResources().getString(R.string.linkDB);
@@ -47,6 +50,8 @@ public class Login extends AppCompatActivity {
             llLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+
                     new AsyncTask<Void, Void, Void>() {
 
                         @Override
@@ -56,7 +61,14 @@ public class Login extends AppCompatActivity {
                                     new Firebase.AuthResultHandler() {
                                         @Override
                                         public void onAuthenticated(AuthData authData) {
+
+                                            edit.putString("login.email",editEmail.getText().toString());
+                                            edit.commit();
                                             progressBar.setVisibility(View.GONE);
+                                            User objUser = new User();
+                                            objUser.setPhoneNo("01227987634");
+                                            objUser.setPassword("6163");
+                                            Env.writeUser(Login.this, objUser);
                                             Intent intent = new Intent(Login.this, MainActivity.class);
                                             startActivity(intent);
 
