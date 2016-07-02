@@ -45,17 +45,21 @@
         <activity android:name=".maps.NearbyMeActivity" />
         <activity
             android:name=".taxi.Activity.LoginActivity"
-            android:theme="@style/AppThemeActionBar"
-            android:label="Tìm Taxi"/>
+            android:label="Tìm Taxi"
+            android:theme="@style/AppThemeActionBar" />
         <activity
             android:name=".taxi.Activity.MainActivityTaxi"
-            android:theme="@style/AppThemeActionBar"
-            android:label="Tìm Taxi"/>
+            android:label="Tìm Taxi"
+            android:theme="@style/AppThemeActionBar" />
         <activity
             android:name=".taxi.Activity.ResetPassActivityTaxi"
             android:theme="@style/AppThemeActionBar" />
-        <activity android:name=".taxi.Activity.RegisterActivityTaxi"
-            android:theme="@style/AppThemeActionBar"></activity>
+        <activity
+            android:name=".taxi.Activity.RegisterActivityTaxi"
+            android:theme="@style/AppThemeActionBar" />
+        <activity android:name=".taxi.Activity.PhoneCenter"
+            android:theme="@style/AppThemeActionBar"
+            android:label="Gọi tổng đài"></activity>
     </application>
 
 </manifest>

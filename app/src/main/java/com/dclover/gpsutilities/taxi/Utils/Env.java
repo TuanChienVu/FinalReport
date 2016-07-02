@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
 import com.dclover.gpsutilities.taxi.model.User;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.lang.reflect.Array;
 import java.util.Locale;
@@ -49,6 +50,27 @@ public class Env {
             objUser = readUser(getApplication());
         }
         return objUser;
+    }
+    public static void savePosition(Context context,LatLng vt)
+    {
+        SharedPreferences sharedPref = context.getSharedPreferences(Constants.PREFERENCE_FILE_KEY, TRIP_STATUS_CANCELED);
+        if (sharedPref != null) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("Lat",""+vt.latitude);
+            editor.putString("long",""+vt.longitude);
+            editor.commit();
+
+        }
+    }
+    public static LatLng getPositon(Context context)
+    {
+        SharedPreferences sharedPref = context.getSharedPreferences(Constants.PREFERENCE_FILE_KEY, TRIP_STATUS_CANCELED);
+        if (sharedPref == null) {
+            return null;
+        }
+        Double Lat=Double.parseDouble(sharedPref.getString("Lat","0"));
+        Double Long=Double.parseDouble(sharedPref.getString("long","0"));
+        return new LatLng(Lat,Long);
     }
 
     public static User readUser(Context context) {

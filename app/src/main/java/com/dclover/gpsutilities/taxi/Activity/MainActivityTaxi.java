@@ -78,6 +78,7 @@ public class MainActivityTaxi extends AppCompatActivity implements OnMapReadyCal
     private Bitmap bmCar4;
     private Bitmap bmCar7;
     private ActionBarDrawerToggle mDrawerToggle;
+    LatLng vitri;
     @Bind(R.id.drawer)
     DrawerLayout mDrawerLayout;
     @Bind(R.id.btnMainTaxiCallTaxis)
@@ -122,6 +123,15 @@ public class MainActivityTaxi extends AppCompatActivity implements OnMapReadyCal
         super.onStop();
         SocketUtils.stopServerMessageThread();
         LocalBroadcastManager.getInstance(Env.getApplication()).unregisterReceiver(this.mBroadcastReceiver);
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Env.savePosition(MainActivityTaxi.this,vitri);
+
 
     }
 
@@ -193,6 +203,12 @@ public class MainActivityTaxi extends AppCompatActivity implements OnMapReadyCal
         @Override
         public void onMapReady(final GoogleMap googleMap) {
             this.googleMap = googleMap;
+
+            final LatLng lastPositon=Env.getPositon(MainActivityTaxi.this);
+            CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(lastPositon.latitude,lastPositon.longitude));
+            googleMap.moveCamera(center);
+            CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+            googleMap.animateCamera(zoom);
             googleMap.setOnMarkerClickListener(
                     new GoogleMap.OnMarkerClickListener() {
 
@@ -225,7 +241,7 @@ public class MainActivityTaxi extends AppCompatActivity implements OnMapReadyCal
                 public void onMyLocationChange(Location location) {
 
 
-                    if(landau) {
+                    if(landau&& lastPositon.longitude==0 && lastPositon.latitude==0) {
                         CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude()));
                         googleMap.moveCamera(center);
 
@@ -242,7 +258,7 @@ public class MainActivityTaxi extends AppCompatActivity implements OnMapReadyCal
                 @Override
                 public void onCameraChange(CameraPosition cameraPosition) {
                     LatLng center=cameraPosition.target;
-
+                    vitri=cameraPosition.target;
                     ClientCommand.updateRiderLocation(center.longitude,center.latitude);
                     Log.d("dd","Thay doi vi tri");
 

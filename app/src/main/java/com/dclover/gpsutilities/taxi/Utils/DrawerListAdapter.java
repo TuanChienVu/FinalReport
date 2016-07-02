@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.dclover.gpsutilities.R;
 import com.dclover.gpsutilities.taxi.Activity.LoginActivity;
 import com.dclover.gpsutilities.taxi.Activity.MainActivityTaxi;
+import com.dclover.gpsutilities.taxi.Activity.PhoneCenter;
 
 /**
  * Created by Kinghero on 6/7/2016.
@@ -41,6 +42,7 @@ public class DrawerListAdapter extends ArrayAdapter<String> {
             imvItem.setImageResource(R.drawable.user_48);
         } else if (position == 2) {
             imvItem.setImageResource(R.drawable.telephone_48);
+
         } else if (position == 3) {
             imvItem.setImageResource(R.drawable.history_48);
         } else if (position == 4) {
@@ -56,11 +58,17 @@ public class DrawerListAdapter extends ArrayAdapter<String> {
         lii.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent;
                 switch (position)
                 {
+                    case 2:
+                         intent=new Intent(context, PhoneCenter.class);
+                        ((MainActivityTaxi)context).finish();
+                        context.startActivity(intent);
+                        break;
                     case 7:
                         Env.removeUser(context);
-                        Intent intent=new Intent(context, LoginActivity.class);
+                        intent=new Intent(context, LoginActivity.class);
                         ((MainActivityTaxi)context).finish();
                         context.startActivity(intent);
                         break;

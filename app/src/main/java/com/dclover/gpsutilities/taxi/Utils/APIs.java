@@ -2,6 +2,9 @@ package com.dclover.gpsutilities.taxi.Utils;
 
 import com.dclover.gpsutilities.taxi.model.Driver;
 import com.dclover.gpsutilities.taxi.model.LoginRegisterResult;
+import com.dclover.gpsutilities.taxi.model.PhoneCenterModel;
+
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.http.GET;
@@ -20,4 +23,6 @@ public interface APIs {
     void getResetPass( @Query("phonenumber") String phone,Callback<LoginRegisterResult> repon);
     @GET("/TaxiOperation/rest/MobileWS/get_driver_info")
     void getDriverInfor( @Query("driver_id") String driver_id,Callback<Driver> repon);
+    @GET("/TaxiOperation/rest/MobileWS/get_callcenter")
+    void GetCenterCall(Callback<List<PhoneCenterModel>> repon);
 }
