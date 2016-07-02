@@ -4,7 +4,10 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -14,9 +17,11 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.dclover.gpsutilities.R;
@@ -30,6 +35,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.koushikdutta.ion.Ion;
 
 import org.json.JSONObject;
 
@@ -38,7 +44,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +52,8 @@ public class NearbyMeActivity extends FragmentActivity implements LocationListen
 
     GoogleMap mGoogleMap;
     Spinner mSprPlaceType;
-    Button btnFind;
+    URL url = null;
+    Bitmap bmp = null;
     PicassoMarker marker;
 
     String[] mPlaceType = null;
@@ -73,8 +79,6 @@ public class NearbyMeActivity extends FragmentActivity implements LocationListen
         mSprPlaceType = (Spinner) findViewById(R.id.spr_place_type);
         // Setting adapter on Spinner to set place types
         mSprPlaceType.setAdapter(adapter);
-        // Getting reference to Find Button
-        btnFind = (Button) findViewById(R.id.btn_find);
         // Getting Google Play availability status
         int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getBaseContext());
 
@@ -109,21 +113,20 @@ public class NearbyMeActivity extends FragmentActivity implements LocationListen
             String provider = locationManager.getBestProvider(criteria, true);
             // Getting Current Location From GPS
             Location location = locationManager.getLastKnownLocation(provider);
-            if(location!=null){
+            if (location != null) {
                 onLocationChanged(location);
             }
             locationManager.requestLocationUpdates(provider, 20000, 0, this);
             // Setting click event lister for the find button
-            btnFind.setOnClickListener(new View.OnClickListener() {
-
+            mSprPlaceType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onClick(View v) {
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     int selectedPosition = mSprPlaceType.getSelectedItemPosition();
                     String type = mPlaceType[selectedPosition];
                     StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-                    sb.append("location="+mLatitude+","+mLongitude);
+                    sb.append("location=" + mLatitude + "," + mLongitude);
                     sb.append("&radius=2000");
-                    sb.append("&types="+type);
+                    sb.append("&types=" + type);
                     sb.append("&sensor=true");
                     sb.append("&key=AIzaSyDOQG3w1nQ6us2yjR9CSazx7IWDgOB1TZk");
                     // Creating a new non-ui thread task to download Google place json data
@@ -131,18 +134,24 @@ public class NearbyMeActivity extends FragmentActivity implements LocationListen
                     // Invokes the "doInBackground()" method of the class PlaceTask
                     placesTask.execute(sb.toString());
                 }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
             });
 
         }
-
     }
 
-    /** A method to download json data from url */
+    /**
+     * A method to download json data from url
+     */
     private String downloadUrl(String strUrl) throws IOException {
         String data = "";
         InputStream iStream = null;
         HttpURLConnection urlConnection = null;
-        try{
+        try {
             URL url = new URL(strUrl);
             // Creating an http connection to communicate with url
             urlConnection = (HttpURLConnection) url.openConnection();
@@ -151,38 +160,42 @@ public class NearbyMeActivity extends FragmentActivity implements LocationListen
             // Reading data from url
             iStream = urlConnection.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
-            StringBuffer sb  = new StringBuffer();
+            StringBuffer sb = new StringBuffer();
             String line = "";
-            while( ( line = br.readLine())  != null){
+            while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
             data = sb.toString();
             br.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.d("Exception", e.toString());
-        }finally{
+        } finally {
             iStream.close();
             urlConnection.disconnect();
         }
         return data;
     }
 
-    /** A class, to download Google Places */
+    /**
+     * A class, to download Google Places
+     */
     private class PlacesTask extends AsyncTask<String, Integer, String> {
         String data = null;
+
         // Invoked by execute() method of this object
         @Override
         protected String doInBackground(String... url) {
-            try{
+            try {
                 data = downloadUrl(url[0]);
-            }catch(Exception e){
-                Log.d("Background Task",e.toString());
+            } catch (Exception e) {
+                Log.d("Background Task", e.toString());
             }
             return data;
         }
+
         // Executed after the complete execution of doInBackground() method
         @Override
-        protected void onPostExecute(String result){
+        protected void onPostExecute(String result) {
             ParserTask parserTask = new ParserTask();
 
             // Start parsing the Google places in JSON format
@@ -191,30 +204,34 @@ public class NearbyMeActivity extends FragmentActivity implements LocationListen
         }
     }
 
-    /** A class to parse the Google Places in JSON format */
-    private class ParserTask extends AsyncTask<String, Integer, List<HashMap<String,String>>>{
+    /**
+     * A class to parse the Google Places in JSON format
+     */
+    private class ParserTask extends AsyncTask<String, Integer, List<HashMap<String, String>>> {
         JSONObject jObject;
+
         // Invoked by execute() method of this object
         @Override
-        protected List<HashMap<String,String>> doInBackground(String... jsonData) {
+        protected List<HashMap<String, String>> doInBackground(String... jsonData) {
             List<HashMap<String, String>> places = null;
             PlaceJSONParser placeJsonParser = new PlaceJSONParser();
-            try{
+            try {
                 jObject = new JSONObject(jsonData[0]);
                 /** Getting the parsed data as a List construct */
                 places = placeJsonParser.parse(jObject);
-            }catch(Exception e){
-                Log.d("Exception",e.toString());
+            } catch (Exception e) {
+                Log.d("Exception", e.toString());
             }
             return places;
         }
 
         // Executed after the complete execution of doInBackground() method
         @Override
-        protected void onPostExecute(List<HashMap<String,String>> list){
+        protected void onPostExecute(List<HashMap<String, String>> list) {
             // Clears all the existing markers
             mGoogleMap.clear();
-            for(int i=0;i<list.size();i++){
+            for (int i = 0; i < list.size(); i++) {
+
                 // Creating a marker
                 MarkerOptions markerOptions = new MarkerOptions();
                 // Getting a place from the places list
@@ -229,29 +246,55 @@ public class NearbyMeActivity extends FragmentActivity implements LocationListen
                 String vicinity = hmPlace.get("vicinity");
                 String icon = hmPlace.get("icon");
                 LatLng latLng = new LatLng(lat, lng);
-                // Setting the position for the marker
-                markerOptions.position(latLng);
-                // Setting the title for the marker.
-                //This will be displayed on taping the marker
-                markerOptions.title(name + "\n" + vicinity);
-                String urlIcon = hmPlace.get("icon");
-                URL url = null;
-                Bitmap image = null;
+
+                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                View view = (View) inflater.inflate(R.layout.icon_marker, null);
+                ImageView img = (ImageView) view.findViewById(R.id.img_icon_marker);
+
+
                 try {
-                    url = new URL(urlIcon);
-                    try {
-                        image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } catch (MalformedURLException e) {
+                    url = new URL(icon);
+                    bmp = Ion.with(NearbyMeActivity.this)
+                            .load(String.valueOf(url)).asBitmap().get();
+                    Drawable b = new BitmapDrawable(getResources(), bmp);
+                    img.setImageDrawable(b);
+
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(image));
-                // Placing a marker on the touched position
-                mGoogleMap.addMarker(markerOptions);
+
+                mGoogleMap.addMarker(new MarkerOptions()
+                        .position(latLng)
+                        .snippet(vicinity)
+                        .title(name + "\n" + vicinity)
+                        .icon(BitmapDescriptorFactory.fromBitmap(getResizedBitmap(getBitmapFromView(img), 40, 40))));
             }
         }
+    }
+
+    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // CREATE A MATRIX FOR THE MANIPULATION
+        Matrix matrix = new Matrix();
+        // RESIZE THE BIT MAP
+        matrix.postScale(scaleWidth, scaleHeight);
+        // "RECREATE" THE NEW BITMAP
+        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+        bm.recycle();
+        return resizedBitmap;
+    }
+
+    public static Bitmap getBitmapFromView(View view) {
+        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        view.draw(canvas);
+        return bitmap;
     }
 
     @Override
@@ -264,6 +307,7 @@ public class NearbyMeActivity extends FragmentActivity implements LocationListen
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
     }
+
     @Override
     public void onProviderDisabled(String provider) {
         // TODO Auto-generated method stub

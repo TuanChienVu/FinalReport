@@ -49,7 +49,7 @@ public class PlaceJSONParser {
 		HashMap<String, String> place = new HashMap<String, String>();
 		String placeName = "-NA-";
 		String vicinity="-NA-";
-		String icon="";
+		String icon="-NA-";
 		String latitude="";
 		String longitude="";
 		try {
@@ -60,6 +60,11 @@ public class PlaceJSONParser {
 			// Extracting Place Vicinity, if available
 			if(!jPlace.isNull("vicinity")){
 				vicinity = jPlace.getString("vicinity");
+			}
+
+			// Extracting Place Vicinity, if available
+			if(!jPlace.isNull("icon")){
+				icon = jPlace.getString("icon");
 			}
 			latitude = jPlace.getJSONObject("geometry").getJSONObject("location").getString("lat");
 			longitude = jPlace.getJSONObject("geometry").getJSONObject("location").getString("lng");			
