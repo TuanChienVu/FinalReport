@@ -11,7 +11,7 @@
         android:id="@+id/imageView9"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/imgLogin"
+        android:src="@drawable/imglogin"
         android:scaleType="center" />
 
     <LinearLayout
@@ -159,7 +159,7 @@
             android:id="@+id/imageView12"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/imgLogin"
+            android:src="@drawable/imglogin"
             android:scaleType="center" />
 
         <LinearLayout
