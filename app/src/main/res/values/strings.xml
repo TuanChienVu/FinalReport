@@ -54,4 +54,23 @@
         <item>Hindu Temple</item>
         <item>Restaurant</item>
     </string-array>
+
+    
+    <string name="link_content">No account yet? Create one</string>
+    <string name="login">Login</string>
+    <string name="email_hint">Email</string>
+    <string name="pass_hint">Password</string>
+    <string name="name_hint">Name</string>
+    <string name="already">Already a member? Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="message_hint">Say anything</string>
+    <string name="profile_me">My Profile Pic</string>
+    <string name="profile_other">Other profile pic</string>
+    <string name="linkDB">https://detaikhoaluan.firebaseio.com/</string>
+
+
+    <string name="button_description">Emoticons Button</string>
+    <string name="chat_hint">Enter text here</string>
+    <string name="post">Post</string>
+    <string name="back">Back</string>
 </resources>

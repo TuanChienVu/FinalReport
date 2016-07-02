@@ -3,6 +3,8 @@ package com.dclover.gpsutilities.maps;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -25,6 +27,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -35,6 +38,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
@@ -230,14 +234,20 @@ public class NearbyMeActivity extends FragmentActivity implements LocationListen
                 // Setting the title for the marker.
                 //This will be displayed on taping the marker
                 markerOptions.title(name + "\n" + vicinity);
-               /* String urlIcon = hmPlace.get("icon");
-                URL url = new URL(hmPlace.get("icon"));
-                Bitmap image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                Marker myMarker = new Marker();
-                marker = new PicassoMarker();
-                Picasso.with(MainActivity.this).load(URL).into(marker);
-                Picasso.with(NearbyMeActivity.this).load(hmPlace.get("icon")).into(m);
-                markerOptions.icon()*/
+                String urlIcon = hmPlace.get("icon");
+                URL url = null;
+                Bitmap image = null;
+                try {
+                    url = new URL(urlIcon);
+                    try {
+                        image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(image));
                 // Placing a marker on the touched position
                 mGoogleMap.addMarker(markerOptions);
             }
