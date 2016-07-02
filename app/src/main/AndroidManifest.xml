@@ -63,9 +63,13 @@
             android:name=".taxi.Activity.PhoneCenter"
             android:label="Gọi tổng đài"
             android:theme="@style/AppThemeActionBar" />
+<<<<<<< HEAD
+        <activity android:name=".login.Login"></activity>
+=======
         <activity
             android:name=".maps.NearbyMeActivity"
             android:theme="@style/AppThemeActionBar" />
+>>>>>>> origin/master
     </application>
 
 </manifest>

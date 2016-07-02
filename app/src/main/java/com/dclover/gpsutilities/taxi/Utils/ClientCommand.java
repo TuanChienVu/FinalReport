@@ -8,7 +8,7 @@ import android.util.Log;
 public class ClientCommand {
     public static void doLogin() {
         if (Env.getUser() != null) {
-            SocketUtils.getSingleton().sendMessage((Constants.CMD_CLIENT_LOGIN + "{\"phoneNumber\":\"" + Env.getUser().getPhoneNo() + "\",\"uuid\":" + "\"" + Env.getUser().getDeviceUUID() + "\"}") + Constants.CMD_END);
+            SocketUtils.getSingleton().sendMessage((Constants.CMD_CLIENT_LOGIN + "{\"phoneNumber\":\"" + Env.getUser().getPhoneNo() + "\",\"uuid\":" + "\"" + "" + "\"}") + Constants.CMD_END);
             Log.d("dd","login:"+(Constants.CMD_CLIENT_LOGIN + "{\"phoneNumber\":\"" + Env.getUser().getPhoneNo() + "\",\"uuid\":" + "\"" + Env.getUser().getDeviceUUID() + "\"}") + Constants.CMD_END);
         }
     }
