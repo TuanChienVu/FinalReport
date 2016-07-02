@@ -55,7 +55,7 @@
         <item>Restaurant</item>
     </string-array>
 
-    
+
     <string name="link_content">No account yet? Create one</string>
     <string name="login">Login</string>
     <string name="email_hint">Email</string>

@@ -131,4 +131,14 @@
     <color name="yellow">#fffff944</color>
     <color name="yellowgreen">#ffccff33</color>
 
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="bgStatusBarMain">#FF09B9C5</color>
+    <color name="bgStatusBarSignUp">#FF2487C4</color>
+
+
+    <color name="salmon">#ff6e6e</color>
+    <color name="chat">#FFCCCC</color>
+    <color name="dgray">#444444</color>
+    <color name="send">#a8ea46</color>
+    <color name="receive">#b5d7e2</color>
 </resources>

@@ -11,4 +11,41 @@
     <dimen name="_24dp">24dp</dimen>
     <dimen name="_48dp">10dp</dimen>
     <dimen name="_20sp">15sp</dimen>
+
+
+    <!--Activity Main-->
+    <dimen name="linearLayout_PaddingTop">56dp</dimen>
+    <dimen name="linearLayout_PaddingLeft">24dp</dimen>
+    <dimen name="linearLayout_PaddingRight">24dp</dimen>
+
+    <dimen name="logo_LayoutHeight">72dp</dimen>
+    <dimen name="logo_marginBottom">24dp</dimen>
+
+    <dimen name="email_marginTop">8dp</dimen>
+    <dimen name="email_marginBottom">8dp</dimen>
+
+    <dimen name="pass_marginTop">8dp</dimen>
+    <dimen name="pass_marginBottom">8dp</dimen>
+
+    <dimen name="btnLogin_marginTop">24dp</dimen>
+    <dimen name="btnLogin_marginBottom">24dp</dimen>
+    <dimen name="btnLogin_padding">12dp</dimen>
+
+    <dimen name="link_TextSize">16dip</dimen>
+    <dimen name="link_marginBottom">24dp</dimen>
+    <!--Activity Main-->
+
+    <!--SignUp Activity-->
+
+    <dimen name="btnSignUp_marginTop">24dp</dimen>
+    <dimen name="btnSignUp_marginBottom">24dp</dimen>
+    <dimen name="btnSignUp_padding">12dp</dimen>
+
+    <dimen name="name_marginTop">8dp</dimen>
+    <dimen name="name_marginBottom">8dp</dimen>
+
+
+    <dimen name="keyboard_height">230dip</dimen>
+
+
 </resources>
