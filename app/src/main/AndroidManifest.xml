@@ -32,7 +32,7 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAiRwOW4u4Bp1AxhUhVda4x2IjQigzsK4o" />
         -->
-        <activity android:name=".MainActivity">
+        <activity android:name=".login.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,13 +63,10 @@
             android:name=".taxi.Activity.PhoneCenter"
             android:label="Gọi tổng đài"
             android:theme="@style/AppThemeActionBar" />
-<<<<<<< HEAD
-        <activity android:name=".login.Login"></activity>
-=======
+        <activity android:name=".MainActivity"></activity>
         <activity
             android:name=".maps.NearbyMeActivity"
             android:theme="@style/AppThemeActionBar" />
->>>>>>> origin/master
     </application>
 
 </manifest>

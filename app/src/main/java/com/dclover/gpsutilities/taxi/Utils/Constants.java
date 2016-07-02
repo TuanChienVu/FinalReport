@@ -5,6 +5,7 @@ package com.dclover.gpsutilities.taxi.Utils;
  */
 public class Constants {
 
+    public static String MY_APP="gpsutility";
     public static String endpoint="http://tms.giamsatxeviet.vn:8080";
     public static final String CAR_TYPE = "CAR_TYPE";
     public static final int CAR_TYPE_4SEAT = 1;
