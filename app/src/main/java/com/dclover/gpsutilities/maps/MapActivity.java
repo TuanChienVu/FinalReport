@@ -1,9 +1,7 @@
 package com.dclover.gpsutilities.maps;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -11,31 +9,25 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dclover.gpsutilities.MainActivity;
 import com.dclover.gpsutilities.R;
 import com.dclover.gpsutilities.khoihanh.moduls.DirectionFinder;
 import com.dclover.gpsutilities.khoihanh.moduls.DirectionFinderListener;
 import com.dclover.gpsutilities.khoihanh.moduls.Route;
 import com.dclover.gpsutilities.maps.mapmoduls.GetDirection;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -204,7 +196,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     public void nearbyme(View view) {
         fabMenu.collapse();
-        try {
+        Intent intent = new Intent(MapActivity.this, NearbyMeActivity.class);
+        startActivity(intent);
+        /*try {
             builder = new PlacePicker.IntentBuilder();
             Intent intent = builder.build(MapActivity.this);
             // Start the Intent by requesting a result, identified by a request code.
@@ -217,7 +211,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             Toast.makeText(MapActivity.this, "Google Play Services is not available.",
                     Toast.LENGTH_LONG)
                     .show();
-        }
+        }*/
     }
     @Override
     public void onDirectionFinderStart() {
