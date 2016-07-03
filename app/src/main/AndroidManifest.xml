@@ -65,7 +65,9 @@
         <activity
             android:name=".maps.NearbyMeActivity"
             android:theme="@style/AppThemeActionBar" />
-        <activity android:name=".login.Logup"></activity>
+        <activity android:name=".login.Logup" />
+        <activity android:name=".ketnoi.Location.GPSTrackingActivity"/>
+        <activity android:name=".ketnoi.Message.ChatActivity"/>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.dclover.gpsutilities.Model;
+package com.dclover.gpsutilities.ketnoi.model;
 
 /**
  * Created by MY PC on 04/06/2016.

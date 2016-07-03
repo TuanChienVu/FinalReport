@@ -8,9 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.dclover.gpsutilities.Model.UserInformation;
 import com.dclover.gpsutilities.R;
-import com.dclover.gpsutilities.ketnoi.SharedPrefsUtils;
+import com.dclover.gpsutilities.ketnoi.Message.SharedPrefsUtils;
+import com.dclover.gpsutilities.ketnoi.model.UserInformation;
 import com.dclover.gpsutilities.taxi.Activity.LoginActivity;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;

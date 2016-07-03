@@ -1,4 +1,4 @@
-package com.dclover.gpsutilities.ketnoi;
+package com.dclover.gpsutilities.ketnoi.Message;
 
 import android.content.Context;
 import android.content.SharedPreferences;

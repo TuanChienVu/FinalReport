@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@mipmap/background"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/linearLayout_PaddingLeft"
+        android:paddingRight="@dimen/linearLayout_PaddingRight"
+        android:paddingTop="@dimen/linearLayout_PaddingTop">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/logo_LayoutHeight"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/logo_marginBottom"
+            android:src="@mipmap/logo" />
+
+        <!-- Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/email_marginBottom"
+            android:layout_marginTop="@dimen/email_marginTop">
+
+            <EditText
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email_hint"
+                android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/pass_marginBottom"
+            android:layout_marginTop="@dimen/pass_marginTop">
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_reset"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/btnLogin_marginBottom"
+            android:layout_marginTop="@dimen/btnLogin_marginTop"
+            android:padding="@dimen/btnLogin_padding"
+            android:text="Send Email" />
+
+    </LinearLayout>
+</ScrollView>

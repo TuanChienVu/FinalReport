@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.dclover.gpsutilities.caidat.ActivityCaiDat;
 import com.dclover.gpsutilities.compass.ComPass;
+import com.dclover.gpsutilities.ketnoi.Message.ChatActivity;
 import com.dclover.gpsutilities.khoihanh.ActivityKhoiHanh;
 import com.dclover.gpsutilities.maps.MapActivity;
 import com.dclover.gpsutilities.taxi.Activity.LoginActivity;
@@ -72,7 +73,9 @@ public class MainActivity extends AppCompatActivity {
         llketnoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                customToast("Chức năng này đang phát triển");
+                Intent intent=new Intent(MainActivity.this, ChatActivity.class);
+                startActivity(intent);
+//                customToast("Chức năng này đang phát triển");
             }
         });
         llkhoihanh.setOnClickListener(new View.OnClickListener() {
