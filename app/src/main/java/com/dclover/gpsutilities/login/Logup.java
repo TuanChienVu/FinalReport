@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.dclover.gpsutilities.R;
@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class Logup extends AppCompatActivity {
 
-    Button btnSignUp;
+    LinearLayout btnSignUp;
     EditText edName, edEmail, edPass;
 
     String userName, userEmail, userPass, userID;
@@ -34,7 +34,7 @@ public class Logup extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         final Firebase myFirebaseRef = new Firebase(linkBD);
         final Firebase userInfo = myFirebaseRef.child("User Information");
-        btnSignUp = (Button) findViewById(R.id.btn_signup);
+        btnSignUp = (LinearLayout) findViewById(R.id.btn_signup);
         edName = (EditText) findViewById(R.id.input_name);
         edEmail = (EditText) findViewById(R.id.input_email);
         edPass = (EditText) findViewById(R.id.input_password);
@@ -62,16 +62,15 @@ public class Logup extends AppCompatActivity {
                         String[] parts = str.split(substr);
                         String userName = parts[0];
                         SharedPrefsUtils.setStringPreference(Logup.this,"UserName",userName);
-                        userID = result.get("uid").toString();
-//                        myFirebaseRef.child("User Information").setValue(userInformation);
+                        userID = result.get("uid").toString();;
                         userInformation = new UserInformation(userName, userEmail, userPass, userID);
                         userInfo.push().setValue(userInformation, new Firebase.CompletionListener() {
                             @Override
                             public void onComplete(FirebaseError firebaseError, Firebase firebase) {
                                 if (firebaseError != null) {
-                                    Toast.makeText(Logup.this, "Error", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Logup.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(Logup.this, "Success", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Logup.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

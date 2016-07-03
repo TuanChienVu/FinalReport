@@ -231,7 +231,7 @@
                     android:layout_marginTop="5dp"
                     android:textAllCaps="true"
                     android:textColor="#FFFFFF"
-                    android:text="Cài Đặt"
+                    android:text="Tài Khoản"
                     />
             </LinearLayout>
 

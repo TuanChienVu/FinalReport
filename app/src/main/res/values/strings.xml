@@ -232,8 +232,8 @@
     <string name="link_content">No account yet? Create one</string>
     <string name="login">Login</string>
     <string name="email_hint">Email</string>
-    <string name="pass_hint">Password</string>
-    <string name="name_hint">Name</string>
+    <string name="pass_hint">Mật khẩu</string>
+    <string name="name_hint">Họ tên</string>
     <string name="already">Already a member? Login</string>
     <string name="create_account">Create Account</string>
     <string name="message_hint">Say anything</string>

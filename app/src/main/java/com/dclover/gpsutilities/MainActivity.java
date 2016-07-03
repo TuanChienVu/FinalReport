@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout llcompas,llcaidat,llhuongdan,llketnoi,lltaxi,llkhoihanh,llbando;
+    LinearLayout llcompas,llcaidat,llhuongdan,llketnoi,lltaxi,llkhoihanh,llbando,llquit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +49,19 @@ public class MainActivity extends AppCompatActivity {
         lltaxi=(LinearLayout) findViewById(R.id.ll_taxi);
         llkhoihanh=(LinearLayout) findViewById(R.id.ll_khoihanh);
         llbando=(LinearLayout) findViewById(R.id.ll_map);
-
-
+        llquit=(LinearLayout) findViewById(R.id.ll_quit);
+        llquit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intCloseApp = new Intent(Intent.ACTION_MAIN);
+                intCloseApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intCloseApp.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                intCloseApp.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intCloseApp.addCategory(Intent.CATEGORY_HOME);
+                intCloseApp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intCloseApp);
+            }
+        });
         llcompas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -263,9 +274,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        Intent intCloseApp = new Intent(Intent.ACTION_MAIN);
+        intCloseApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intCloseApp.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intCloseApp.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intCloseApp.addCategory(Intent.CATEGORY_HOME);
+        intCloseApp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intCloseApp);
     }
 }

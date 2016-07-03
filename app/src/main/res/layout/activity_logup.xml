@@ -1,38 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@mipmap/signup"
-    android:fitsSystemWindows="true">
+    >
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:id="@+id/imageView9"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/imglogin"
+        android:scaleType="center" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/linearLayout_PaddingLeft"
-        android:paddingRight="@dimen/linearLayout_PaddingRight"
-        android:paddingTop="@dimen/linearLayout_PaddingTop">
+        android:layout_below="@+id/imageView9"
+        android:layout_margin="16dp">
 
-        <!-- <ImageView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_gravity="center_horizontal"
-             android:layout_marginBottom="@dimen/logo_marginBottom"
-             android:src="@mipmap/logo" />
- -->
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/logo_LayoutHeight"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/logo_marginBottom"
-            android:src="@mipmap/logo" />
-
-        <!-- Name Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/name_marginBottom"
-            android:layout_marginTop="@dimen/name_marginTop">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/input_name"
@@ -73,25 +62,39 @@
         </android.support.design.widget.TextInputLayout>
 
         <!-- Signup Button -->
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_signup"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/btnSignUp_marginBottom"
-            android:layout_marginTop="@dimen/btnSignUp_marginTop"
-            android:padding="@dimen/btnSignUp_padding"
-            android:text="@string/create_account" />
 
-        <TextView
-            android:id="@+id/link_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/link_marginBottom"
-            android:gravity="center"
-            android:onClick="login"
-            android:text="@string/already"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/link_TextSize" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#298aa6"
+            android:id="@+id/btn_signup"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="16dp" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Đăng Ký"
+                android:id="@+id/textView13"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#ffffff"
+                android:gravity="center" />
+        </LinearLayout>
 
     </LinearLayout>
-</ScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng Ký"
+        android:id="@+id/textView11"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="67dp"
+        android:textColor="#ffffff"
+        android:textSize="30sp" />
+</RelativeLayout>

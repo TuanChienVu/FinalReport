@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dclover.gpsutilities.MainActivity;
@@ -34,6 +35,8 @@ public class Login extends AppCompatActivity {
     EditText edtPass;
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
+    @Bind(R.id.tv_login_taotaioan)
+    TextView tvTaoTaiKhoan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,16 @@ public class Login extends AppCompatActivity {
         final SharedPreferences sharedPref = getSharedPreferences(Constants.MY_APP, MODE_PRIVATE);
         final SharedPreferences.Editor edit=sharedPref.edit();
         String login=sharedPref.getString("login.email","");
+
         if(login.equals("")) {
             String linkBD = getBaseContext().getResources().getString(R.string.linkDB);
+            tvTaoTaiKhoan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent =new Intent(Login.this,Logup.class);
+                    startActivity(intent);
+                }
+            });
             Firebase.setAndroidContext(this);
             final Firebase myFirebaseRef = new Firebase(linkBD);
             llLogin.setOnClickListener(new View.OnClickListener() {

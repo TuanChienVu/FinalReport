@@ -117,7 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tạo tài khoản mới"
-            android:id="@+id/textView11"
+            android:id="@+id/tv_login_taotaioan"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp" />
 
