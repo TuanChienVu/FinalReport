@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.dclover.gpsutilities.MainActivity;
 import com.dclover.gpsutilities.R;
+import com.dclover.gpsutilities.ketnoi.Message.SharedPrefsUtils;
 import com.dclover.gpsutilities.taxi.Utils.Constants;
 import com.dclover.gpsutilities.taxi.Utils.Env;
 import com.dclover.gpsutilities.taxi.model.User;
@@ -72,6 +73,9 @@ public class Login extends AppCompatActivity {
                                     new Firebase.AuthResultHandler() {
                                         @Override
                                         public void onAuthenticated(AuthData authData) {
+
+                                            SharedPrefsUtils.setStringPreference(Login.this,"UserID",authData.getUid());
+                                            SharedPrefsUtils.setStringPreference(Login.this,"UserName",editEmail.getText().toString());
 
                                             edit.putString("login.email",editEmail.getText().toString());
                                             edit.commit();
