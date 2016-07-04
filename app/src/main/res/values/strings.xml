@@ -246,4 +246,6 @@
     <string name="chat_hint">Enter text here</string>
     <string name="post">Post</string>
     <string name="back">Back</string>
+    <string name="open_string">open</string>
+    <string name="close_string">close</string>
 </resources>

@@ -51,6 +51,27 @@ public class Env {
         }
         return objUser;
     }
+    public static void savePositionALL(Context context,LatLng vt,String name)
+    {
+        SharedPreferences sharedPref = context.getSharedPreferences(name, Context.MODE_PRIVATE);
+        if (sharedPref != null) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("Lat",""+vt.latitude);
+            editor.putString("long",""+vt.longitude);
+            editor.commit();
+
+        }
+    }
+    public static LatLng getPositonALL(Context context,String name)
+    {
+        SharedPreferences sharedPref = context.getSharedPreferences(name, Context.MODE_PRIVATE);
+        if (sharedPref == null) {
+            return null;
+        }
+        Double Lat=Double.parseDouble(sharedPref.getString("Lat","0"));
+        Double Long=Double.parseDouble(sharedPref.getString("long","0"));
+        return new LatLng(Lat,Long);
+    }
     public static void savePosition(Context context,LatLng vt)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(Constants.PREFERENCE_FILE_KEY, TRIP_STATUS_CANCELED);

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "790031698941",
+    "firebase_url": "https://finalreport-efbce.firebaseio.com",
+    "project_id": "finalreport-efbce",
+    "storage_bucket": "finalreport-efbce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790031698941:android:f3d595301cd44858",
+        "android_client_info": {
+          "package_name": "com.dclover.gpsutilities"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790031698941-jf9gj694v5mjtj4orfoucljepj1hhk8r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dclover.gpsutilities",
+            "certificate_hash": "391B6A94F678F57201BA66D2B8E62C6139A4E47B"
+          }
+        },
+        {
+          "client_id": "790031698941-vba84kqt2ps2udrbb2gpmka4me6j4kak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN-b9sbJt1SX7sg4qbMsOtk0n8AEBNHt8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790031698941-vba84kqt2ps2udrbb2gpmka4me6j4kak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

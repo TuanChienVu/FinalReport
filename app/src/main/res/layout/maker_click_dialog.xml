@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/relativeLayout3"
+        android:background="@drawable/shape_marker_dialog"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp" >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout2"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/img_markerclick_hinh"
+                android:background="@drawable/img_marker_daidien" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/tv_markerclick_name"
+                android:layout_gravity="center_vertical|left"
+                android:layout_marginLeft="8dp"
+                android:textSize="16sp"
+                android:ellipsize="marquee" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/tv_markerclick_diachi"
+            android:textSize="12sp"
+            android:layout_below="@+id/linearLayout3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="6dp"
+            android:singleLine="true"
+            android:lines="1"
+            android:ellipsize="marquee" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/linearLayout3"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="6dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:id="@+id/imageView14"
+                android:src="@drawable/ic_star" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:id="@+id/imageView15"
+                android:src="@drawable/ic_star"
+                android:layout_marginLeft="4dp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:id="@+id/imageView16"
+                android:src="@drawable/ic_star"
+                android:layout_marginLeft="4dp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:id="@+id/imageView17"
+                android:src="@drawable/ic_star"
+                android:layout_marginLeft="4dp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:id="@+id/imageView18"
+                android:src="@drawable/ic_star"
+                android:layout_marginLeft="4dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/imageView19"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/iconcar"
+            android:layout_margin="6dp"
+            android:alpha="0.5" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_markerclick_diachi"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:id="@+id/linearLayout4">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center_horizontal"
+                android:background="#d6d6d6"></FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Khoảng cách:"
+                android:id="@+id/tv_markerclick_khoangcach"
+                android:textSize="12sp"
+                android:layout_below="@+id/linearLayout3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Thời gian:"
+                android:id="@+id/tv_markerclick_thogian"
+                android:textSize="12sp"
+                android:layout_below="@+id/linearLayout3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="6dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Chi phí dự kiến:"
+                android:id="@+id/tv_markerclick_chiphi"
+                android:textSize="12sp"
+                android:layout_below="@+id/linearLayout3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="6dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center_horizontal"
+                android:background="#d6d6d6"
+                android:layout_marginTop="12dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout4"
+            android:layout_alignLeft="@+id/linearLayout4"
+            android:layout_alignStart="@+id/linearLayout4"
+            android:layout_marginTop="26dp"
+            android:layout_marginRight="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gọi Điện"
+                android:id="@+id/tv_markerclick_goidien"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:paddingLeft="16dp"
+                android:paddingBottom="8dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#ffffff"
+                android:layout_weight="1"
+                android:layout_marginRight="16dp"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chỉ Đường"
+                android:id="@+id/tv_markerclick_chiduong"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:paddingLeft="16dp"
+                android:paddingBottom="8dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#ffffff"
+                android:layout_weight="1"
+                android:gravity="center" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>
