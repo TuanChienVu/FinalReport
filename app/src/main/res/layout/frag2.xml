@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:background="#f5f5f5"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/frag2_tv"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Location"
+        android:textColor="#757575"
+        android:textSize="@dimen/frag1_cond_txt_size"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:background="#90a4ae"
+        android:id="@+id/frag2_rv"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+</LinearLayout>

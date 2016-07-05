@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/ic_pause"
+        android:id="@+id/action_pause"
+        app:showAsAction="always"
+        android:title="@string/action_pause" />
+    <item
+        android:icon="@drawable/record"
+        android:id="@+id/action_record"
+        app:showAsAction="always"
+        android:title="@string/action_record" />
+    <item
+        android:icon="@drawable/ic_review"
+        android:id="@+id/action_review"
+        app:showAsAction="always"
+        android:title="@string/action_review" />
+
+</menu>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:background="#b0bec5"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:background="@color/colorPrimary"
+        android:id="@+id/android_bar_testing3"
+        android:layout_height="wrap_content"
+        app:titleTextColor="#ffffff"
+        android:layout_width="match_parent"
+        android:minHeight="?android:attr/actionBarSize" />
+
+    <android.support.v4.widget.DrawerLayout
+        android:background="#585858"
+        android:id="@+id/drawer_layout"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <FrameLayout
+            android:id="@+id/containerView"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical" />
+
+        <fragment
+            android:background="#ffffff"
+            android:id="@+id/frag_nav"
+            android:layout="@layout/navigation_drawer"
+            android:layout_gravity="left"
+            android:layout_height="match_parent"
+            android:layout_width="250dp"
+            android:name="com.dclover.gpsutilities.thoitiet.NavigationDrawerFragment" />
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

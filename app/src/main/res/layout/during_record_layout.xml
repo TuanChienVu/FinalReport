@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/card_view_top_margin"
+        android:layout_marginLeft="@dimen/card_view_left_margin"
+        android:layout_marginRight="@dimen/card_view_right_margin"
+        android:layout_marginTop="@dimen/card_view_bottom_margin">
+
+        <LinearLayout
+            android:id="@+id/DuringRecordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:layout_weight="1.0"
+                android:orientation="vertical"
+                android:weightSum="2.0">
+
+                <TextView
+                    android:id="@+id/timlabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:gravity="left"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text="@string/duration"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textSize="@dimen/abc_text_size_small_material" />
+
+                <Chronometer
+                    android:id="@+id/TimerDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#efefef" />
+
+                <TextView
+                    android:id="@+id/maxspeedlabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:gravity="left"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text="@string/maxSpeed"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:id="@+id/maxSpeedview"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="MaxSpeed"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="#efefef" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:layout_weight="1.0"
+                android:orientation="vertical"
+                android:weightSum="2.0">
+
+                <TextView
+                    android:id="@+id/dislabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:gravity="left"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text="@string/distance"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:id="@+id/distanceview"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="Distance"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#efefef" />
+
+                <TextView
+                    android:id="@+id/avgspeedlabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:gravity="left"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text="@string/avgSpeed"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:id="@+id/avgSpeedview"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="AvgSpeed"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

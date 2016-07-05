@@ -22,6 +22,7 @@ import com.dclover.gpsutilities.taxi.Activity.LoginActivity;
 import com.dclover.gpsutilities.taxi.Activity.MainActivityTaxi;
 import com.dclover.gpsutilities.taxi.Utils.Env;
 import com.dclover.gpsutilities.taxi.model.User;
+import com.dclover.gpsutilities.thoitiet.ThoiTietActivity;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -78,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
         llhuongdan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                customToast("Chức năng này đang phát triển");
+                Intent intent=new Intent(MainActivity.this, ThoiTietActivity.class);
+                startActivity(intent);
             }
         });
         llketnoi.setOnClickListener(new View.OnClickListener() {

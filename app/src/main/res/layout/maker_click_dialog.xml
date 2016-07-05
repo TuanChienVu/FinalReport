@@ -25,7 +25,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:id="@+id/img_markerclick_hinh"
-                android:background="@drawable/img_marker_daidien" />
+                android:src="@drawable/img_marker_daidien" />
 
             <TextView
                 android:layout_width="wrap_content"

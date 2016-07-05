@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/card_view_top_margin"
+        android:layout_marginLeft="@dimen/card_view_left_margin"
+        android:layout_marginRight="@dimen/card_view_right_margin"
+        android:layout_marginTop="@dimen/card_view_bottom_margin"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:id="@+id/SpeedDisplayLayout"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:weightSum="4.0">
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/speedTextView"
+                android:layout_height="0dp"
+                android:layout_weight="2.5"
+                android:layout_width="match_parent"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large1"
+                android:textSize="@dimen/speed_text_size"
+                android:text="30" />
+
+            <LinearLayout
+                android:clickable="true"
+                android:gravity="center"
+                android:id="@+id/SpeedButtonLayout"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:weightSum="2.0">
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/kmphButton"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.0"
+                    android:layout_width="wrap_content"
+                    android:text="@string/KPHbutton"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="@dimen/speedunit_text_size" />
+
+                <Button
+                    android:clickable="false"
+                    android:id="@+id/mphButton"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.9"
+                    android:layout_width="wrap_content"
+                    android:text="@string/MPHbutton"
+                    android:textSize="@dimen/speedbutton_text_size" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

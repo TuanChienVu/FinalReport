@@ -141,4 +141,8 @@
     <color name="dgray">#444444</color>
     <color name="send">#a8ea46</color>
     <color name="receive">#b5d7e2</color>
+
+
+    ////////////////
+    <color name="textColor">#ffffffff</color>
 </resources>

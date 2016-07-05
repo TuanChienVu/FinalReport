@@ -39,7 +39,6 @@ import com.dclover.gpsutilities.taxi.Utils.CommonUtils;
 import com.dclover.gpsutilities.taxi.Utils.Constants;
 import com.dclover.gpsutilities.taxi.Utils.DrawerListAdapter;
 import com.dclover.gpsutilities.taxi.Utils.Env;
-import com.dclover.gpsutilities.taxi.Utils.ListDriverDialogFragment;
 import com.dclover.gpsutilities.taxi.Utils.SocketUtils;
 import com.dclover.gpsutilities.taxi.model.Driver;
 import com.google.android.gms.maps.CameraUpdate;
@@ -81,8 +80,6 @@ public class MainActivityTaxi extends AppCompatActivity implements OnMapReadyCal
     LatLng vitri;
     @Bind(R.id.drawer)
     DrawerLayout mDrawerLayout;
-    @Bind(R.id.btnMainTaxiCallTaxis)
-    Button btnDanhsachtaxi;
     @Bind(R.id.left_drawer)
     ListView lisviewdraw;
     @Bind(R.id.ll_taxiinfor)
@@ -97,6 +94,8 @@ public class MainActivityTaxi extends AppCompatActivity implements OnMapReadyCal
     TextView txtNameTaxi;
     @Bind(R.id.txtTaxiBienSo)
     TextView txtBienSo;
+    @Bind(R.id.btnGoiTongDai)
+    Button btnGoiTongDai;
     APIs api;
 
 
@@ -165,18 +164,6 @@ public class MainActivityTaxi extends AppCompatActivity implements OnMapReadyCal
         };
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-        btnDanhsachtaxi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Driver[] drivers = new Driver[mapDriver.size()];
-                mapDriver.values().toArray(drivers);
-                ListDriverDialogFragment newFragment = new ListDriverDialogFragment();
-                newFragment.setDrivers(drivers);
-                newFragment.show(getFragmentManager(), "Drivers");
-
-                Log.d("dd","câ");
-            }
-        });
 
         DrawerListAdapter adapter=new DrawerListAdapter(mDrawerLayout,MainActivityTaxi.this,1,new String[]{"LÀM MỚI","Tài khoản","Gọi tổng đài","Lịch sử","Trợ giúp","Thông tin","Phản hồi","Đăng Xuất"});
         lisviewdraw.setAdapter(adapter);
@@ -187,16 +174,25 @@ public class MainActivityTaxi extends AppCompatActivity implements OnMapReadyCal
         this.bmCar4 = CommonUtils.resizeImage(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.taxi4_top_50), CommonUtils.dpToPx(BitmapDescriptorFactory.HUE_ORANGE, getResources()), CommonUtils.dpToPx(BitmapDescriptorFactory.HUE_ORANGE, getResources()));
         this.bmCar7 = CommonUtils.resizeImage(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.taxi7_top_50), CommonUtils.dpToPx(BitmapDescriptorFactory.HUE_ORANGE, getResources()), CommonUtils.dpToPx(BitmapDescriptorFactory.HUE_ORANGE, getResources()));
 
+
         if (Env.getApplication() == null) {
             Env.setApplication(getApplication());
         }
 
 
 
+        btnGoiTongDai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivityTaxi.this, PhoneCenter.class);
+                startActivity(intent);
+            }
+        });
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         mapFragment.getMapAsync(this);
     }
 

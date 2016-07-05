@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.Toolbar
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/toolbar_StandardRoute"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_width="match_parent">
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:id="@+id/toolbar_title"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Khởi hành"
+            android:textColor="#ffffff" />
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_below="@+id/toolbar_StandardRoute"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <ListView
+
+            android:divider="@null"
+            android:id="@+id/listView"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -30,18 +30,10 @@
             android:layout_centerVertical="true"
             android:visibility="gone" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/pointmap_green" />
-
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="110dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -269,29 +261,15 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btnGoiTongDai"
                     style="@style/ButtonRadiusMaterialGreen"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Gọi Xe"
-                    android:textSize="18sp" />
+                    android:text="Gọi Tổng Đài"
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnMainTaxiCallTaxis"
-            style="@style/ButtonRadiusMaterialDarkGray"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_above="@+id/linearLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="6dp"
-            android:layout_marginLeft="54dp"
-            android:layout_marginRight="54dp"
-            android:elevation="0dp"
-            android:text="Danh sách xe"
-            android:textSize="15sp" />
     </RelativeLayout>
 
     <RelativeLayout

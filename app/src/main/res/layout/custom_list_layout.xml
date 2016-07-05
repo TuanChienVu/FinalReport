@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/listCard"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp">
+
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/tripNameTextview"
+                android:layout_alignParentLeft="true"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
+                android:text="TripName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_margin="6dp"
+                android:paddingTop="6dp" />
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/startLabel"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/tripNameTextview"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
+                android:text="@string/fromTextview"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_margin="6dp" />
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/endLabel"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/startLabel"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
+                android:text="@string/toTextview"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_margin="6dp"
+                android:paddingBottom="6dp" />
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/startPlaceTextview"
+                android:layout_alignBaseline="@id/startLabel"
+                android:layout_alignBottom="@id/startLabel"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/startLabel"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@string/fromTextview"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/endPlaceTextview"
+                android:layout_alignBaseline="@id/endLabel"
+                android:layout_alignBottom="@id/endLabel"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/endLabel"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@string/toTextview"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <ImageView
+                android:clickable="true"
+                android:focusable="false"
+                android:id="@id/deleteButton"
+                android:layout_height="25dp"
+                android:layout_width="25dp"
+                android:src="@drawable/ic_delete"
+                android:layout_alignBottom="@+id/endPlaceTextview"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="4dp"
+                android:alpha="0.4" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

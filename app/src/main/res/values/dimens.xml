@@ -11,7 +11,15 @@
     <dimen name="_24dp">24dp</dimen>
     <dimen name="_48dp">10dp</dimen>
     <dimen name="_20sp">15sp</dimen>
-
+    <dimen name="card_view_bottom_margin">2.0dip</dimen>
+    <dimen name="card_view_left_margin">4.0dip</dimen>
+    <dimen name="card_view_right_margin">4.0dip</dimen>
+    <dimen name="card_view_top_margin">2.0dip</dimen>
+    <dimen name="speed_text_size">140.0sp</dimen>
+    <dimen name="speedunit_text_size">30.0sp</dimen>
+    <dimen name="speedbutton_text_size">10.0sp</dimen>
+    <dimen name="abc_text_size_small_material">14.0sp</dimen>
+    <dimen name="abc_text_size_subhead_material">16.0sp</dimen>
 
     <!--Activity Main-->
     <dimen name="linearLayout_PaddingTop">56dp</dimen>
@@ -46,6 +54,20 @@
 
 
     <dimen name="keyboard_height">230dip</dimen>
-
+    <dimen name="frag1_loc_tv">20.0dip</dimen>
+    <dimen name="frag1_loc_tv_size">30.0sp</dimen>
+    <dimen name="frag1_card_elevation_radius">2.0dip</dimen>
+    <dimen name="forecast_row_iv">80.0dip</dimen>
+    <dimen name="frag1_cond_txt_size">20.0sp</dimen>
+    <dimen name="frag1_date_txt_size">10.0sp</dimen>
+    <dimen name="frag1_temp_txt_size">40.0sp</dimen>
+    <dimen name="frag2_card_row_condition">15.0sp</dimen>
+    <dimen name="frag2_card_row_padding">5.0dip</dimen>
+    <dimen name="frag2_card_row_padding_bottom">5.0dip</dimen>
+    <dimen name="nav_drawer_rateus_height">50.0dip</dimen>
+    <dimen name="nav_drawer_width">250.0dip</dimen>
+    <dimen name="nav_menu_iv">40.0dip</dimen>
+    <dimen name="nav_menu_iv_padding">15.0dip</dimen>
+    <dimen name="padding_top">10.0dip</dimen>
 
 </resources>
