@@ -33,6 +33,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,22 +59,17 @@ public class ChatActivity extends AppCompatActivity implements EmoticonsGridAdap
     private LinearLayout parentLayout;
     private boolean isKeyBoardVisible;
     private Bitmap[] emoticons;
+    ImageView emoticonsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
-
-        final Firebase myfirebase = new Firebase("https://detaikhoaluan.firebaseio.com/");
         Firebase.setAndroidContext(this);
-
+        final Firebase myfirebase = new Firebase("https://detaikhoaluan.firebaseio.com/");
         parentLayout = (LinearLayout) findViewById(R.id.list_parent);
-
         emoticonsCover = (LinearLayout) findViewById(R.id.footer_for_emoticons);
-
         popUpView = getLayoutInflater().inflate(R.layout.emoticons_popup, null);
-
         btnSend = (ImageButton) findViewById(R.id.btSend);
         edMessage = (EditText) findViewById(R.id.etMessage);
         lvChat = (ListView) findViewById(R.id.lvChat);
@@ -98,7 +94,7 @@ public class ChatActivity extends AppCompatActivity implements EmoticonsGridAdap
         changeKeyboardHeight((int) popUpheight);
 
         // Showing and Dismissing pop up on clicking emoticons button
-        ImageView emoticonsButton = (ImageView) findViewById(R.id.emoticons_button);
+        emoticonsButton = (ImageView) findViewById(R.id.emoticons_button);
         emoticonsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -143,22 +139,22 @@ public class ChatActivity extends AppCompatActivity implements EmoticonsGridAdap
             public void onClick(View v) {
 
                 if (edMessage.getText().toString().length() > 0) {
-
+//                    Spanned sp = edMessage.getText();
                     Message message = new Message();
                     Date date = new Date();
                     String key = sDateFormat.format(date);
                     String mdate = key.substring(0, 8);
                     message.setText(edMessage.getText().toString());
+//                    message.setText(sp);
                     message.setmDate(mdate);
                     message.setSender(sender);
                     myfirebase.child("MyChat").push().setValue(message);
                     edMessage.setText("");
-
+//                    byte[]pic_array = ImageView_To_Byte()
                 }
 
             }
         });
-
 
         Firebase mychat = new Firebase("https://detaikhoaluan.firebaseio.com/MyChat/");
         mychat.addChildEventListener(new ChildEventListener() {
@@ -191,17 +187,25 @@ public class ChatActivity extends AppCompatActivity implements EmoticonsGridAdap
         });
     }
 
+    public byte[] ImageView_To_Byte(ImageView imgv) {
+
+        BitmapDrawable drawable = (BitmapDrawable) imgv.getDrawable();
+        Bitmap bmp = drawable.getBitmap();
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;
+    }
+
     /**
      * Reading all emoticons in local cache
      */
     private void readEmoticons() {
-
         emoticons = new Bitmap[NO_OF_EMOTICONS];
         for (short i = 0; i < NO_OF_EMOTICONS; i++) {
             emoticons[i] = getImage((i + 1) + ".png");
         }
-
-
     }
 
     /**
@@ -212,17 +216,11 @@ public class ChatActivity extends AppCompatActivity implements EmoticonsGridAdap
 
             @Override
             public void onClick(View v) {
-
                 if (popupWindow.isShowing()) {
-
                     popupWindow.dismiss();
-
                 }
-
             }
         });
-
-
     }
 
     /**
@@ -244,39 +242,28 @@ public class ChatActivity extends AppCompatActivity implements EmoticonsGridAdap
     int previousHeightDiffrence = 0;
 
     private void checkKeyboardHeight(final View parentLayout) {
-
         parentLayout.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
 
                     @Override
                     public void onGlobalLayout() {
-
                         Rect r = new Rect();
                         parentLayout.getWindowVisibleDisplayFrame(r);
-
                         int screenHeight = parentLayout.getRootView()
                                 .getHeight();
                         int heightDifference = screenHeight - (r.bottom);
-
                         if (previousHeightDiffrence - heightDifference > 50) {
                             popupWindow.dismiss();
                         }
-
                         previousHeightDiffrence = heightDifference;
                         if (heightDifference > 100) {
-
                             isKeyBoardVisible = true;
                             changeKeyboardHeight(heightDifference);
-
                         } else {
-
                             isKeyBoardVisible = false;
-
                         }
-
                     }
                 });
-
     }
 
     /**
@@ -287,37 +274,29 @@ public class ChatActivity extends AppCompatActivity implements EmoticonsGridAdap
      *               open or not
      */
     private void changeKeyboardHeight(int height) {
-
         if (height > 100) {
             keyboardHeight = height;
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, keyboardHeight);
             emoticonsCover.setLayoutParams(params);
         }
-
     }
 
     /**
      * Defining all components of emoticons keyboard
      */
     private void enablePopUpView() {
-
         ViewPager pager = (ViewPager) popUpView.findViewById(R.id.emoticons_pager);
         pager.setOffscreenPageLimit(3);
-
         ArrayList<String> paths = new ArrayList<String>();
-
         for (short i = 1; i <= NO_OF_EMOTICONS; i++) {
             paths.add(i + ".png");
         }
-
         EmoticonsPagerAdapter adapter = new EmoticonsPagerAdapter(ChatActivity.this, paths, this);
         pager.setAdapter(adapter);
-
         // Creating a pop window for emoticons keyboard
         popupWindow = new PopupWindow(popUpView, LinearLayout.LayoutParams.MATCH_PARENT,
                 (int) keyboardHeight, false);
-
         TextView backSpace = (TextView) popUpView.findViewById(R.id.back);
         backSpace.setOnClickListener(new View.OnClickListener() {
 
@@ -327,7 +306,6 @@ public class ChatActivity extends AppCompatActivity implements EmoticonsGridAdap
                 edMessage.dispatchKeyEvent(event);
             }
         });
-
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
             @Override
@@ -348,11 +326,9 @@ public class ChatActivity extends AppCompatActivity implements EmoticonsGridAdap
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         Bitmap temp = BitmapFactory.decodeStream(in, null, null);
         return temp;
     }
-
 
     @Override
     public void keyClickedIndex(final String index) {
@@ -366,7 +342,6 @@ public class ChatActivity extends AppCompatActivity implements EmoticonsGridAdap
         };
 
         Spanned cs = Html.fromHtml("<img src ='" + index + "'/>", imageGetter, null);
-
         int cursorPosition = edMessage.getSelectionStart();
         edMessage.getText().insert(cursorPosition, cs);
     }

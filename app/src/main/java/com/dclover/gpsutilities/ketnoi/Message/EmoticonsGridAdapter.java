@@ -79,16 +79,11 @@ public class EmoticonsGridAdapter extends BaseAdapter {
     private Bitmap getImage(String path) {
         AssetManager mngr = mContext.getAssets();
         InputStream in = null;
-
         try {
             in = mngr.open("emoticons/" + path);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        //BitmapFactory.Options options = new BitmapFactory.Options();
-        //options.inSampleSize = chunks;
-
         Bitmap temp = BitmapFactory.decodeStream(in, null, null);
         return temp;
     }
