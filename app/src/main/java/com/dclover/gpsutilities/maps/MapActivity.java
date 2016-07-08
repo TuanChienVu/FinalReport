@@ -2,8 +2,10 @@ package com.dclover.gpsutilities.maps;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -47,11 +49,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dclover.gpsutilities.R;
+import com.dclover.gpsutilities.ketnoi.Message.SharedPrefsUtils;
 import com.dclover.gpsutilities.khoihanh.cu.moduls.DirectionFinder;
 import com.dclover.gpsutilities.khoihanh.cu.moduls.DirectionFinderListener;
 import com.dclover.gpsutilities.khoihanh.cu.moduls.Route;
@@ -64,6 +68,7 @@ import com.dclover.gpsutilities.maps.mapmoduls.PlaceJSONParser;
 import com.dclover.gpsutilities.maps.mapmoduls.autocomplete.ResualAutocomplete;
 import com.dclover.gpsutilities.maps.mapmoduls.item;
 import com.dclover.gpsutilities.maps.mapmoduls.place.ResualPlace;
+import com.dclover.gpsutilities.taxi.Utils.Constants;
 import com.dclover.gpsutilities.taxi.Utils.Env;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
@@ -123,12 +128,13 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
     LocationManager locationManager;
     LatLng DiemA, DiemB;
     boolean thucthi = false;
-    TextView txtTime, txtMoney, txtKhoangCach;
+    TextView txtTime, txtMoney, txtKhoangCach,tvEmai,tvName;
     CardView display;
     LatLng vitri;
     RecyclerView rv;
     FloatingActionButton btnGps;
     boolean voice=true,chiduong=false;
+    ProgressBar progressBar;
 
 
     AutoCompleteTextView editTimkiem;
@@ -190,8 +196,12 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
         editTimkiem = (AutoCompleteTextView) findViewById(R.id.edt_diadiem_timkiem);
         editTimkiem.setDropDownVerticalOffset(8);
         imgOpenNavigation=(ImageView) findViewById(R.id.img_open_navigation);
-
-
+        tvEmai=(TextView) findViewById(R.id.tv_map_email);
+        tvName=(TextView) findViewById(R.id.tv_map_name);
+        final SharedPreferences sharedPref = getSharedPreferences(Constants.MY_APP, MODE_PRIVATE);
+        tvName.setText(SharedPrefsUtils.getStringPreference(this,"UserName"));
+        tvEmai.setText(sharedPref.getString("login.email",""));
+        progressBar=(ProgressBar) findViewById(R.id.progressBar3);
 
         ////nav
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -252,20 +262,24 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
                 lat_long = convertAddress(tv.getText().toString());
 
                 DiemA = new LatLng(Double.valueOf(lat_long[0]), Double.valueOf(lat_long[1]));
-                MarkerOptions option = new MarkerOptions();
-                option.position(DiemA);
-                option.title(searchLocationA.getText().toString()).snippet("Nơi Xuất Phát");
-                option.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-                option.alpha(0.8f);
-                //option.rotation(90);
-                Marker maker = mMap.addMarker(option);
-                maker.showInfoWindow();
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DiemA, 15));
-                try  {
-                    InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                } catch (Exception e) {
+                if(DiemA.longitude==0f && DiemA.latitude==0f)
+                    Toast.makeText(getBaseContext(),"Không tìm thấy",Toast.LENGTH_SHORT);
+                else {
+                    MarkerOptions option = new MarkerOptions();
+                    option.position(DiemA);
+                    option.title(searchLocationA.getText().toString()).snippet("Nơi Xuất Phát");
+                    option.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                    option.alpha(0.8f);
+                    //option.rotation(90);
+                    Marker maker = mMap.addMarker(option);
+                    maker.showInfoWindow();
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DiemA, 14.5f));
+                    try {
+                        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                    } catch (Exception e) {
 
+                    }
                 }
             }
         });
@@ -277,24 +291,28 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
                     /////
                     String[] lat_long = new String[2];
                     lat_long = convertAddress(editTimkiem.getText().toString());
-
                     DiemA = new LatLng(Double.valueOf(lat_long[0]), Double.valueOf(lat_long[1]));
-                    MarkerOptions option = new MarkerOptions();
-                    option.position(DiemA);
-                    option.title(searchLocationA.getText().toString()).snippet("Nơi Xuất Phát");
-                    option.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-                    option.alpha(0.8f);
-                    //option.rotation(90);
-                    Marker maker = mMap.addMarker(option);
-                    maker.showInfoWindow();
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DiemA, 15));
-                    try  {
-                        InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                    } catch (Exception e) {
+                    Log.d("dd",DiemA.latitude+"_"+DiemA.latitude);
+                    if(DiemA.longitude==0f && DiemA.latitude==0f)
+                        Toast.makeText(getBaseContext(),"Không tìm thấy",Toast.LENGTH_SHORT);
+                    else {
+                        MarkerOptions option = new MarkerOptions();
+                        option.position(DiemA);
+                        option.title(searchLocationA.getText().toString()).snippet("Nơi Xuất Phát");
+                        option.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                        option.alpha(0.8f);
+                        //option.rotation(90);
+                        Marker maker = mMap.addMarker(option);
+                        maker.showInfoWindow();
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DiemA, 14.5f));
+                        try {
+                            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                        } catch (Exception e) {
 
+                        }
+                        editTimkiem.dismissDropDown();
                     }
-                    editTimkiem.dismissDropDown();
                     return true;
                 }
                 return false;
@@ -310,9 +328,18 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
                 }
                 else
                 {
-                    Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "vi-VN");
-                    startActivityForResult(intent, 0);
+                    try {
+                        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "vi-VN");
+                        startActivityForResult(intent, 0);
+                    } catch(ActivityNotFoundException e)
+                {
+                    Toast.makeText(getBaseContext(),"Xin hãy tải google voice",Toast.LENGTH_SHORT);
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW,   Uri.parse("https://market.android.com/details?id=com.google.android.googlequicksearchbox"));
+                    startActivity(browserIntent);
+
+                }
+
                 }
             }
         });
@@ -384,7 +411,7 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
 
                     mMap.moveCamera(center);
 
-                    CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+                    CameraUpdate zoom = CameraUpdateFactory.zoomTo(14.5f);
                     mMap.animateCamera(zoom);
                     chay = true;
                 }
@@ -405,7 +432,7 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
                 //option.rotation(90);
                 Marker maker = mMap.addMarker(option);
                 maker.showInfoWindow();
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DiemA, 14));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DiemA, 144.5f));
 
 //                mMap.setMapType(type);
 
@@ -429,7 +456,7 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
                 //option.rotation(90);
                 Marker maker = mMap.addMarker(option);
                 maker.showInfoWindow();
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DiemB, 14));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DiemB, 14.5f));
 //                mMap.setMapType(type);
 
                 if (thucthi == true) {
@@ -462,9 +489,33 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
 
            List<String> matches_text = data
                     .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-          if(matches_text.size()>0)
+          if(matches_text.size()>0) {
               editTimkiem.setText(matches_text.get(0));
+              String[] lat_long = new String[2];
+              lat_long = convertAddress(editTimkiem.getText().toString());
+              DiemA = new LatLng(Double.valueOf(lat_long[0]), Double.valueOf(lat_long[1]));
 
+              Log.d("dd",DiemA.latitude+"_"+DiemA.latitude);
+              if(DiemA.longitude==0f && DiemA.latitude==0f)
+                  Toast.makeText(getBaseContext(),"Không tìm thấy",Toast.LENGTH_SHORT);
+              else {
+                  MarkerOptions option = new MarkerOptions();
+                  option.position(DiemA);
+                  option.title("");
+                  option.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                  option.alpha(0.8f);
+                  //option.rotation(90);
+                  Marker maker = mMap.addMarker(option);
+                  maker.showInfoWindow();
+                  mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DiemA, 14.5f));
+                  try {
+                      InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                      imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                  } catch (Exception e) {
+
+                  }
+              }
+          }
 
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -549,8 +600,9 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
         polylinePaths = new ArrayList<>();
         originMarkers = new ArrayList<>();
         destinationMarkers = new ArrayList<>();
+        final SharedPreferences sharedPref = getSharedPreferences(Constants.MY_APP, MODE_PRIVATE);
 
-
+        int giaxang=sharedPref.getInt("giaxang",17000);
         if (route.size() > 1) {
             if(chiduong) {
                 for (int i = 1; i < route.size(); i++) {
@@ -581,10 +633,10 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
             float tieuthu = (float) (khoangcach * 14) / 100;
             Locale locale = new Locale("vi", "VN");
             NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-            String kq = fmt.format(tieuthu * 17000).toString().replace(".", ",");
+            String kq = fmt.format(tieuthu * giaxang).toString().replace(".", ",");
 
 
-            tvChiphiMarker.setText("Chi phí dự kiến: " + kq+" (17,000 đ/lit)");
+            tvChiphiMarker.setText("Chi phí dự kiến: " + kq+"("+giaxang+" đ/lit)");
 
         } else {
             if(chiduong) {
@@ -606,10 +658,10 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
             float tieuthu = (float) (khoangcach * 14) / 100;
             Locale locale = new Locale("vi", "VN");
             NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-            String kq = fmt.format(tieuthu * 17000).toString().replace(".", ",");
+            String kq = fmt.format(tieuthu * giaxang).toString().replace(".", ",");
 
 
-            tvChiphiMarker.setText("Chi phí dự kiến: " + kq+" (17,000 đ/lit)");
+            tvChiphiMarker.setText("Chi phí dự kiến: " + kq+"("+giaxang+" đ/lit)");
 
         }
 
@@ -711,7 +763,7 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
         final LatLng lastPositon = Env.getPositonALL(MapActivity.this, "map");
         CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(lastPositon.latitude, lastPositon.longitude));
         googleMap.moveCamera(center);
-        CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+        CameraUpdate zoom = CameraUpdateFactory.zoomTo(14.5f);
         googleMap.animateCamera(zoom);
         googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
@@ -722,7 +774,7 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
                     googleMap.moveCamera(center);
 
 
-                    CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+                    CameraUpdate zoom = CameraUpdateFactory.zoomTo(14.5f);
                     googleMap.animateCamera(zoom);
                     landau = false;
                 }
@@ -745,12 +797,14 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
                 final TextView tvDiachi=(TextView) dialogNN.findViewById(R.id.tv_markerclick_diachi);
                 final TextView tvGoidien=(TextView) dialogNN.findViewById(R.id.tv_markerclick_goidien);
                 final ImageView img=(ImageView) dialogNN.findViewById(R.id.img_markerclick_hinh);
+                final ProgressBar progressBar4=(ProgressBar) dialogNN.findViewById(R.id.progressBar4);
                 tvKhoangcachMarker=(TextView) dialogNN.findViewById(R.id.tv_markerclick_khoangcach);
                 tvThogianMarker=(TextView) dialogNN.findViewById(R.id.tv_markerclick_thogian);
                 tvChiphiMarker=(TextView) dialogNN.findViewById(R.id.tv_markerclick_chiphi);
                 tvChiduongMarker=(TextView) dialogNN.findViewById(R.id.tv_markerclick_chiduong);
                 RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint("https://maps.googleapis.com").build();
                 final MapAPI api = restAdapter.create(MapAPI.class);
+                progressBar4.setVisibility(View.VISIBLE);
                 api.getPlace(marker.getTitle(), "AIzaSyAhHiXNMuQXiofd35C3FDxXHP0Vcp_vsR0", new Callback<ResualPlace>() {
                     @Override
                     public void success(final ResualPlace resualAutocomplete, Response response) {
@@ -766,6 +820,7 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
                                 Intent intent = new Intent(Intent.ACTION_DIAL);
                                 intent.setData(Uri.parse("tel:"+resualAutocomplete.getResult().getInternationalPhoneNumber()));
                                 startActivity(intent);
+
                             }
                         });
                         tvChiduongMarker.setOnClickListener(new View.OnClickListener() {
@@ -776,12 +831,12 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
                                 dialogNN.dismiss();
                             }
                         });
-
+                        progressBar4.setVisibility(View.GONE);
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-
+                        progressBar4.setVisibility(View.GONE);
                     }
                 });
 
@@ -796,12 +851,6 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
             @Override
             public void onMapLongClick(LatLng latLng) {
                 googleMap.clear();
-                dau = true;
-
-                googleMap.addMarker(new MarkerOptions()
-                        .position(latLng)
-                        .title("Tới đây")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
                 //sendRequest(latLng);
             }
         });
@@ -866,6 +915,7 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
     @Override
     public void onClickDiadiem(String type) {
         Log.d("dd", type);
+        progressBar.setVisibility(View.VISIBLE);
         StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         sb.append("location=" + vitri.latitude + "," + vitri.longitude);
         sb.append("&radius=2000");
@@ -968,6 +1018,7 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
                         .title(key)
                         .icon(BitmapDescriptorFactory.fromBitmap(getResizedBitmap(getBitmapFromView(img), 50, 50))));
             }
+            progressBar.setVisibility(View.GONE);
         }
     }
 

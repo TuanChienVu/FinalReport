@@ -99,7 +99,6 @@ public class Login extends AppCompatActivity implements
                                         @Override
                                         public void onAuthenticated(AuthData authData) {
 
-                                            edit.putString("login.email", editEmail.getText().toString());
                                             SharedPrefsUtils.setStringPreference(Login.this,"UserID",authData.getUid());
                                             SharedPrefsUtils.setStringPreference(Login.this,"UserName",editEmail.getText().toString());
                                             edit.putString("login.email",editEmail.getText().toString());
@@ -156,9 +155,19 @@ public class Login extends AppCompatActivity implements
             GoogleSignInResult result=Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if(result.isSuccess())
             {
+                final SharedPreferences sharedPref = getSharedPreferences(Constants.MY_APP, MODE_PRIVATE);
+                final SharedPreferences.Editor edit = sharedPref.edit();
                 GoogleSignInAccount account=result.getSignInAccount();
-
+                SharedPrefsUtils.setStringPreference(Login.this,"UserName",account.getDisplayName());
+                edit.putString("login.email",account.getEmail());
+                edit.commit();
                 Log.d("dd","dd"+account.getEmail()+"_"+account.getDisplayName()+"_"+account.getId());
+                User objUser = new User();
+                objUser.setPhoneNo("01227987634");
+                objUser.setPassword("6163");
+                Env.writeUser(Login.this, objUser);
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                startActivity(intent);
 
 
             }

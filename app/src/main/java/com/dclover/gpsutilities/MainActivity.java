@@ -3,12 +3,16 @@ package com.dclover.gpsutilities;
 import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,13 +24,17 @@ import com.dclover.gpsutilities.khoihanh.ActivityKhoiHanh;
 import com.dclover.gpsutilities.maps.MapActivity;
 import com.dclover.gpsutilities.taxi.Activity.LoginActivity;
 import com.dclover.gpsutilities.taxi.Activity.MainActivityTaxi;
+import com.dclover.gpsutilities.taxi.Utils.Constants;
 import com.dclover.gpsutilities.taxi.Utils.Env;
 import com.dclover.gpsutilities.taxi.model.User;
 import com.dclover.gpsutilities.thoitiet.ThoiTietActivity;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -126,8 +134,45 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        new Descriptions().execute();
     }
+    // Description AsyncTask
+     class Descriptions extends AsyncTask<Void, Void, Void> {
+        String desc;
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Connect to the web site
+                Document document = Jsoup.connect("https://www.petrolimex.com.vn/").get();
+                // Using Elements to get the Meta data
+
+                desc =document.getElementsByClass("list-table").get(0).child(1).child(1).text();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            // Set description into TextView
+
+            if(!desc.equals("null"))
+            {
+                int kq=Integer.parseInt(desc.replace(".",""));
+                final SharedPreferences sharedPref = getSharedPreferences(Constants.MY_APP, MODE_PRIVATE);
+                final SharedPreferences.Editor edit = sharedPref.edit();
+                edit.putInt("giaxang",kq);
+                edit.commit();
+            }
+        }
+    }
 
     private void customToast(String msg){
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -276,12 +321,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intCloseApp = new Intent(Intent.ACTION_MAIN);
-        intCloseApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intCloseApp.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        intCloseApp.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intCloseApp.addCategory(Intent.CATEGORY_HOME);
-        intCloseApp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intCloseApp);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        super.onDestroy();
+        CookieSyncManager.createInstance(MainActivity.this);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.removeAllCookie();
+
     }
 }

@@ -17,7 +17,7 @@
             android:layout_height="55dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Điểm Đến"
-            android:id="@+id/textView"
+            android:id="@+id/tv_map_name"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:gravity="center"
