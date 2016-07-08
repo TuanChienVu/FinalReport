@@ -397,10 +397,10 @@ public class MapActivity extends AppCompatActivity implements ItemDiaDiemAdapter
 
         searchLocationA = (EditText) findViewById(R.id.searchLocationA);
 
-        fabMenu = (FloatingActionsMenu) findViewById(R.id.fab_menu);
+        //fabMenu = (FloatingActionsMenu) findViewById(R.id.fab_menu);
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        searchLocationB = (EditText) findViewById(R.id.searchLocation);
+       // searchLocationB = (EditText) findViewById(R.id.searchLocation);
         searchLocationA = (EditText) findViewById(R.id.searchLocationA);
 
         btnGps.setOnClickListener(new View.OnClickListener() {
