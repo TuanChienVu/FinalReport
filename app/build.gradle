@@ -43,7 +43,6 @@ dependencies {
     compile 'com.koushikdutta.ion:ion:2.+'
     compile 'com.android.support:design:23.3.0'
     compile 'com.jjoe64:graphview:4.1.0'
-    compile 'org.jsoup:jsoup:1.9.2'
 
 
 
